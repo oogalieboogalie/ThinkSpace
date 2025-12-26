@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Privacy &amp; Data Protection — Knowledge Companion</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #0b0b10;
+        --fg: #e9e9f2;
+        --muted: rgba(233, 233, 242, 0.7);
+        --card: rgba(255, 255, 255, 0.06);
+        --border: rgba(255, 255, 255, 0.12);
+        --link: #a78bfa;
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #ffffff;
+          --fg: #0b0b10;
+          --muted: rgba(11, 11, 16, 0.7);
+          --card: rgba(0, 0, 0, 0.04);
+          --border: rgba(0, 0, 0, 0.1);
+          --link: #6d28d9;
+        }
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        line-height: 1.55;
+      }
+
+      main {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 56px 20px;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      h1 {
+        margin: 10px 0 8px;
+        font-size: 40px;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+
+      h2 {
+        margin: 28px 0 10px;
+        font-size: 18px;
+        letter-spacing: -0.01em;
+      }
+
+      p {
+        margin: 10px 0;
+      }
+
+      ul {
+        margin: 10px 0 0;
+        padding-left: 18px;
+      }
+
+      li {
+        margin: 6px 0;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: 16px;
+      }
+
+      .card {
+        margin-top: 16px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: 22px;
+        padding: 22px;
+      }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+          monospace;
+        font-size: 0.95em;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="topbar">
+        <a href="./">← Back</a>
+      </div>
+
+      <h1>Privacy &amp; Data Protection</h1>
+      <p class="muted"><strong>Effective date:</strong> 2025-12-13</p>
+
+      <div class="card">
+        <p>
+          This page explains how <strong>Knowledge Companion</strong> handles your conversations, files, and “memories”.
+          Your actual data flows depend on which providers you configure.
+        </p>
+
+        <h2>What Data The App Handles</h2>
+        <ul>
+          <li><strong>Account data (if enabled):</strong> email/ID and authentication tokens via an auth provider (e.g., Supabase).</li>
+          <li><strong>Conversation content:</strong> messages you type and AI responses you receive.</li>
+          <li><strong>Files and notes:</strong> documents you attach/embed and any notes you write in the app.</li>
+          <li><strong>Memory entries:</strong> text and metadata saved into your configured knowledge store (e.g., Qdrant).</li>
+        </ul>
+
+        <h2>Where Your Data Goes</h2>
+        <p>When you enable features, your data is sent to the services you configure, such as:</p>
+        <ul>
+          <li><strong>AI providers</strong> (MiniMax, Grok, Gemini)</li>
+          <li><strong>Vector database</strong> (Qdrant / Qdrant Cloud)</li>
+          <li><strong>Embedding provider</strong> (Cohere)</li>
+          <li><strong>Web search provider</strong> (Tavily)</li>
+          <li><strong>Auth provider</strong> (Supabase)</li>
+        </ul>
+
+        <h2>Model Training</h2>
+        <ul>
+          <li><strong>We do not use your data to train or improve any models.</strong></li>
+          <li class="muted">
+            Third‑party providers may have their own retention/training policies. Review their terms and use opt‑out settings where available.
+          </li>
+        </ul>
+
+        <h2>Retention &amp; Deletion</h2>
+        <ul>
+          <li><strong>On-device:</strong> the app may store settings and conversation state on your device.</li>
+          <li><strong>Remote:</strong> memories are stored in the remote services you configure.</li>
+          <li><strong>Backups/snapshots:</strong> deleted data may remain in backups until they expire per provider retention.</li>
+        </ul>
+
+        <h2>Security</h2>
+        <ul>
+          <li>Encrypted connections (<code>HTTPS</code>) where supported by the provider.</li>
+          <li>At‑rest encryption/access controls depend on the provider and your configuration.</li>
+        </ul>
+
+        <p class="muted">
+          Not legal advice. This document is provided for transparency and convenience and does not constitute legal advice.
+        </p>
+      </div>
+    </main>
+  </body>
+</html>

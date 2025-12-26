@@ -1,0 +1,533 @@
+/* Import Design System */
+@import './design-tokens.css';
+
+/* Import Cosmic Animations from Grok Suite */
+@import './cosmic-animations.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    /* Apply base colors using RGB channels */
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+  }
+
+  [data-theme="dark"],
+  [data-theme="cosmic"] {
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: rgb(var(--foreground));
+    @apply transition-colors duration-200;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(var(--background), 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--muted), 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--muted), 0.5);
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Code blocks - exclude chat code blocks which have their own styling */
+pre:not(.my-3 pre):not([style]) {
+  background: rgba(var(--card), 0.8);
+  border: 1px solid rgba(var(--border), 0.2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  overflow-x: auto;
+}
+
+
+code {
+  background: rgba(var(--card), 0.6);
+  padding: 2px var(--space-xs);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
+/* Better readability for notebook mode */
+.notebook-paper {
+  font-size: 0.95rem;
+}
+
+/* Code blocks & inline code on notebook paper */
+.notebook-paper pre,
+.notebook-paper code {
+  color: rgb(var(--foreground));
+  font-size: 0.95rem;
+}
+
+/* Block code: distinct but still soft background */
+.notebook-paper pre {
+  background: rgba(var(--border), 0.35);
+  border-radius: 0.75rem;
+  padding: var(--space-md);
+}
+
+/* Inline code */
+.notebook-paper code {
+  background: rgba(var(--border), 0.45);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.4rem;
+}
+
+/* Markdown content styling */
+.markdown-content h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-md);
+  color: rgb(var(--foreground));
+}
+
+.markdown-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  color: rgb(var(--foreground));
+}
+
+.markdown-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xs);
+  color: rgb(var(--foreground));
+}
+
+.markdown-content p {
+  margin-bottom: var(--space-md);
+  line-height: 1.7;
+  color: rgb(var(--foreground));
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-bottom: var(--space-md);
+  margin-left: var(--space-lg);
+  color: rgb(var(--foreground));
+}
+
+.markdown-content li {
+  margin-bottom: var(--space-xs);
+}
+
+.markdown-content a {
+  color: rgb(var(--primary));
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.markdown-content a:hover {
+  color: rgb(var(--primary)) / 0.8;
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid rgba(var(--border), 0.6);
+  padding-left: var(--space-md);
+  font-style: italic;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
+  color: rgb(var(--muted-foreground));
+}
+
+/* Neumorphic Utilities */
+.neumorphic-inset {
+  background-color: rgba(var(--card), var(--neumorphic-bg-opacity));
+  box-shadow: inset 6px 6px 12px var(--shadow-dark), inset -6px -6px 12px var(--shadow-light);
+  border: 1px solid rgba(var(--border), 0.3);
+}
+
+.neumorphic-outset {
+  background-color: rgba(var(--card), var(--neumorphic-bg-opacity));
+  box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+  border: 1px solid rgba(var(--border), 0.3);
+}
+
+.neumorphic-input {
+  background-color: rgba(var(--input), var(--neumorphic-bg-opacity));
+  box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+  border: none;
+}
+
+/* ===========================
+   NOTEBOOK THEME FOR MARKDOWN
+   =========================== */
+
+/* Generic notebook base */
+.notebook-paper {
+  background: var(--canvas-background);
+  border: 1px solid var(--canvas-border);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+  color: rgb(var(--foreground));
+  /* Ensure text color follows theme */
+  padding-left: 4.5rem;
+  padding-right: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Horizontal lines */
+.notebook-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to bottom,
+      var(--canvas-line) 1px,
+      transparent 1px);
+  background-size: 100% 28px;
+  pointer-events: none;
+}
+
+/* Margin line on the left */
+.notebook-paper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3.5rem;
+  width: 1px;
+  background: rgba(248, 113, 113, 0.6);
+  pointer-events: none;
+}
+
+/* Theme-specific tweaks */
+[data-theme="cosmic"] .notebook-paper {
+  box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.4),
+    0 24px 70px rgba(15, 23, 42, 0.9);
+}
+
+[data-theme="dark"] .notebook-paper {
+  box-shadow: 0 0 0 1px rgba(31, 41, 55, 0.8),
+    0 24px 60px rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="forest"] .notebook-paper {
+  box-shadow: 0 0 0 1px rgba(45, 80, 55, 0.6),
+    0 24px 60px rgba(5, 13, 8, 0.85);
+}
+
+[data-theme="nebula"] .notebook-paper {
+  box-shadow: 0 0 0 1px rgba(80, 40, 140, 0.5),
+    0 24px 70px rgba(10, 5, 20, 0.9);
+}
+
+/* Adjust headings for notebook mode */
+.notebook-paper h1,
+.notebook-paper h2,
+.notebook-paper h3,
+.notebook-paper h4,
+.notebook-paper h5,
+.notebook-paper h6 {
+  color: rgb(var(--foreground));
+}
+
+.notebook-paper p,
+.notebook-paper li,
+.notebook-paper strong {
+  color: rgb(var(--foreground));
+  opacity: 0.9;
+}
+
+/* ===========================================
+   MANCALA / INWARD BOWL CHAT INPUT
+   =========================================== */
+
+.mancala-input {
+  background-color: var(--bowl-bg, #e0e5ec);
+  border: 6px solid var(--bowl-bg, #e0e5ec);
+  border-radius: 40px;
+  padding: 1rem 3.5rem 1rem 1.25rem;
+  resize: none;
+
+  box-shadow:
+    -6px -6px 16px var(--shadow-light, rgba(255, 255, 255, 0.9)),
+    6px 6px 16px var(--shadow-dark, rgba(163, 177, 198, 0.55)),
+
+    inset 10px 10px 20px var(--bowl-shadow-dark, rgba(163, 177, 198, 0.9)),
+    inset -10px -10px 20px var(--bowl-shadow-light, rgba(255, 255, 255, 1));
+
+  transition: box-shadow 0.3s ease, transform 0.25s ease, background-color 0.25s ease;
+}
+
+.mancala-input:focus {
+  outline: none;
+  transform: translateY(-1px) scale(1.01);
+  box-shadow:
+    -6px -6px 20px var(--shadow-light, rgba(255, 255, 255, 1)),
+    6px 6px 20px var(--shadow-dark, rgba(163, 177, 198, 0.7)),
+    inset 15px 15px 30px var(--bowl-shadow-dark, rgba(163, 177, 198, 0.9)),
+    inset -15px -15px 30px var(--bowl-shadow-light, rgba(255, 255, 255, 1));
+}
+
+/* Floating marble send button */
+.mancala-send-btn {
+  background: radial-gradient(circle at 30% 30%,
+      var(--shadow-light, #ffffff) 0%,
+      var(--bowl-bg, #f7f7f7) 40%,
+      var(--shadow-dark, #e6e6e6) 100%);
+  border-radius: 50%;
+  border: 1px solid var(--shadow-light, #ffffff);
+
+  box-shadow:
+    8px 8px 15px var(--shadow-dark, rgba(163, 177, 198, 0.5)),
+    -4px -4px 10px var(--shadow-light, rgba(255, 255, 255, 0.9)),
+    inset -5px -5px 10px rgba(0, 0, 0, 0.1),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.85);
+
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    filter 0.2s ease;
+}
+
+.mancala-send-btn:hover {
+  transform: scale(1.1);
+}
+
+.mancala-send-btn:active {
+  transform: scale(0.9);
+  box-shadow:
+    4px 4px 8px var(--shadow-dark, rgba(163, 177, 198, 0.75)),
+    -2px -2px 5px var(--shadow-light, rgba(255, 255, 255, 0.75)),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.45);
+}
+
+.mancala-panel {
+  background-color: var(--bowl-bg, #e0e5ec);
+  border: 10px solid var(--bowl-bg, #e0e5ec);
+  border-radius: 40px;
+  box-shadow:
+    -10px -10px 20px var(--shadow-light, rgba(255, 255, 255, 0.9)),
+    10px 10px 20px var(--shadow-dark, rgba(163, 177, 198, 0.55)),
+    inset 12px 12px 24px var(--bowl-shadow-dark, rgba(163, 177, 198, 0.85)),
+    inset -12px -12px 24px var(--bowl-shadow-light, rgba(255, 255, 255, 0.95));
+  position: relative;
+  overflow: hidden;
+  background-clip: padding-box;
+  transition: box-shadow 0.3s ease, transform 0.25s ease;
+}
+
+/* Mancala-style cards for landing page */
+.mancala-card {
+  background-color: var(--bowl-bg, rgba(224, 229, 236, 0.95));
+  border: 8px solid var(--bowl-bg, rgba(224, 229, 236, 0.95));
+  border-radius: 32px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  background-clip: padding-box;
+  transition: box-shadow 0.35s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  box-shadow:
+    -8px -8px 16px var(--shadow-light, rgba(255, 255, 255, 0.85)),
+    8px 8px 16px var(--shadow-dark, rgba(163, 177, 198, 0.5)),
+    inset 8px 8px 16px var(--bowl-shadow-dark, rgba(163, 177, 198, 0.7)),
+    inset -8px -8px 16px var(--bowl-shadow-light, rgba(255, 255, 255, 0.9));
+}
+
+.mancala-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    -10px -10px 24px var(--shadow-light, rgba(255, 255, 255, 0.95)),
+    10px 10px 24px var(--shadow-dark, rgba(163, 177, 198, 0.6)),
+    inset 10px 10px 20px var(--bowl-shadow-dark, rgba(163, 177, 198, 0.75)),
+    inset -10px -10px 20px var(--bowl-shadow-light, rgba(255, 255, 255, 0.95));
+}
+
+/* Blue accent for student card */
+.mancala-card-blue {
+  background: linear-gradient(135deg,
+      rgba(59, 130, 246, 0.08) 0%,
+      rgba(6, 182, 212, 0.08) 100%),
+    var(--bowl-bg, rgba(224, 229, 236, 0.95));
+  border-color: rgba(59, 130, 246, 0.15);
+}
+
+.mancala-card-blue:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow:
+    -10px -10px 24px var(--shadow-light, rgba(255, 255, 255, 0.95)),
+    10px 10px 24px rgba(59, 130, 246, 0.25),
+    inset 10px 10px 20px rgba(59, 130, 246, 0.15),
+    inset -10px -10px 20px var(--bowl-shadow-light, rgba(255, 255, 255, 0.95));
+}
+
+/* Purple accent for developer card */
+.mancala-card-purple {
+  background: linear-gradient(135deg,
+      rgba(139, 92, 246, 0.08) 0%,
+      rgba(236, 72, 153, 0.08) 100%),
+    var(--bowl-bg, rgba(224, 229, 236, 0.95));
+  border-color: rgba(139, 92, 246, 0.15);
+}
+
+.mancala-card-purple:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow:
+    -10px -10px 24px var(--shadow-light, rgba(255, 255, 255, 0.95)),
+    10px 10px 24px rgba(139, 92, 246, 0.25),
+    inset 10px 10px 20px rgba(139, 92, 246, 0.15),
+    inset -10px -10px 20px var(--bowl-shadow-light, rgba(255, 255, 255, 0.95));
+}
+
+/* Mancala-style marble button */
+.mancala-btn {
+  background: radial-gradient(circle at 30% 30%,
+      var(--shadow-light, #ffffff) 0%,
+      var(--bowl-bg, #f0f0f0) 50%,
+      var(--shadow-dark, #d0d0d0) 100%);
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  padding: 0.875rem 1.5rem;
+  font-weight: 600;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.3s ease;
+
+  box-shadow:
+    6px 6px 12px var(--shadow-dark, rgba(163, 177, 198, 0.5)),
+    -4px -4px 8px var(--shadow-light, rgba(255, 255, 255, 0.8)),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.08),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.7);
+}
+
+.mancala-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    8px 8px 16px var(--shadow-dark, rgba(163, 177, 198, 0.55)),
+    -6px -6px 12px var(--shadow-light, rgba(255, 255, 255, 0.9)),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.1),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+.mancala-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.mancala-btn-blue {
+  background: radial-gradient(circle at 30% 30%,
+      rgba(147, 197, 253, 0.9) 0%,
+      rgba(59, 130, 246, 0.85) 50%,
+      rgba(37, 99, 235, 0.9) 100%);
+  color: white;
+  border-color: rgba(147, 197, 253, 0.5);
+}
+
+.mancala-btn-purple {
+  background: radial-gradient(circle at 30% 30%,
+      rgba(196, 181, 253, 0.9) 0%,
+      rgba(139, 92, 246, 0.85) 50%,
+      rgba(109, 40, 217, 0.9) 100%);
+  color: white;
+  border-color: rgba(196, 181, 253, 0.5);
+}
+
+/* Dark mode mancala cards for pricing */
+.mancala-card-dark {
+  background: linear-gradient(145deg,
+      rgba(30, 30, 35, 0.95) 0%,
+      rgba(20, 20, 25, 0.95) 100%);
+  border: 6px solid rgba(40, 40, 50, 0.8);
+  border-radius: 28px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.35s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  box-shadow:
+    -6px -6px 16px rgba(60, 60, 70, 0.3),
+    6px 6px 16px rgba(0, 0, 0, 0.5),
+    inset 6px 6px 14px rgba(0, 0, 0, 0.4),
+    inset -6px -6px 14px rgba(60, 60, 70, 0.15);
+}
+
+.mancala-card-dark:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    -8px -8px 20px rgba(70, 70, 80, 0.35),
+    8px 8px 20px rgba(0, 0, 0, 0.55),
+    inset 8px 8px 18px rgba(0, 0, 0, 0.45),
+    inset -8px -8px 18px rgba(70, 70, 80, 0.2);
+}
+
+/* Dark mancala with blue glow */
+.mancala-card-dark-blue {
+  background: linear-gradient(145deg,
+      rgba(30, 40, 60, 0.95) 0%,
+      rgba(20, 25, 40, 0.95) 100%);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+.mancala-card-dark-blue:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow:
+    -8px -8px 20px rgba(59, 130, 246, 0.15),
+    8px 8px 20px rgba(0, 0, 0, 0.5),
+    inset 8px 8px 18px rgba(0, 0, 0, 0.4),
+    inset -8px -8px 18px rgba(59, 130, 246, 0.1);
+}
+
+/* Dark mancala with primary/accent glow (for popular) */
+.mancala-card-dark-primary {
+  background: linear-gradient(145deg,
+      rgba(50, 35, 70, 0.95) 0%,
+      rgba(30, 25, 45, 0.95) 100%);
+  border-color: rgba(139, 92, 246, 0.35);
+}
+
+.mancala-card-dark-primary:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow:
+    -8px -8px 20px rgba(139, 92, 246, 0.2),
+    8px 8px 20px rgba(0, 0, 0, 0.5),
+    inset 8px 8px 18px rgba(0, 0, 0, 0.4),
+    inset -8px -8px 18px rgba(139, 92, 246, 0.12);
+}
+
+/* Dark mancala with purple/pink glow */
+.mancala-card-dark-purple {
+  background: linear-gradient(145deg,
+      rgba(50, 30, 50, 0.95) 0%,
+      rgba(35, 20, 35, 0.95) 100%);
+  border-color: rgba(168, 85, 247, 0.25);
+}
+
+.mancala-card-dark-purple:hover {
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow:
+    -8px -8px 20px rgba(168, 85, 247, 0.15),
+    8px 8px 20px rgba(0, 0, 0, 0.5),
+    inset 8px 8px 18px rgba(0, 0, 0, 0.4),
+    inset -8px -8px 18px rgba(168, 85, 247, 0.1);
+}

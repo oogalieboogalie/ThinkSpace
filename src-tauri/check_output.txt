@@ -1,0 +1,89 @@
+    Checking startup-strategy-app v1.0.0 (D:\Git Projects\Information-Hordehole\startup-strategy-app\src-tauri)
+error[E0425]: cannot find value `TKG` in this scope
+    --> src\tkg.rs:1234:19
+     |
+1234 |     let mut tkg = TKG.lock().await;
+     |                   ^^^ not found in this scope
+
+warning: unused import: `walkdir::WalkDir`
+ --> src\scanner.rs:4:5
+  |
+4 | use walkdir::WalkDir;
+  |     ^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `start_time`
+  --> src\commands\orchestrate_agents.rs:35:9
+   |
+35 |     let start_time = std::time::Instant::now();
+   |         ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_start_time`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `current_context`
+   --> src\commands\orchestrate_agents.rs:270:13
+    |
+270 |     let mut current_context = format!("Topic: {}", request.topic);
+    |             ^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_current_context`
+
+warning: variable does not need to be mutable
+   --> src\commands\orchestrate_agents.rs:270:9
+    |
+270 |     let mut current_context = format!("Topic: {}", request.topic);
+    |         ----^^^^^^^^^^^^^^^
+    |         |
+    |         help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+error[E0609]: no field `collection_name` on type `&mut TemporalKnowledgeGraph`
+    --> src\tkg.rs:1163:37
+     |
+1163 |         let collection_name = &self.collection_name;
+     |                                     ^^^^^^^^^^^^^^^ unknown field
+     |
+     = note: available fields are: `config`, `initialized`
+
+error[E0609]: no field `client` on type `&mut TemporalKnowledgeGraph`
+    --> src\tkg.rs:1189:36
+     |
+1189 |         let scroll_response = self.client
+     |                                    ^^^^^^ unknown field
+     |
+     = note: available fields are: `config`, `initialized`
+
+error[E0609]: no field `collection_name` on type `&mut TemporalKnowledgeGraph`
+    --> src\tkg.rs:1190:27
+     |
+1190 |             .scroll(&self.collection_name, None, Some(100), Some(true), Some(false), None)
+     |                           ^^^^^^^^^^^^^^^ unknown field
+     |
+     = note: available fields are: `config`, `initialized`
+
+error[E0609]: no field `client` on type `&mut TemporalKnowledgeGraph`
+    --> src\tkg.rs:1215:22
+     |
+1215 |                 self.client.set_payload(
+     |                      ^^^^^^ unknown field
+     |
+     = note: available fields are: `config`, `initialized`
+
+warning: use of deprecated method `tauri::PathResolver::app_dir`: Will be removed in 2.0.0. Use `app_config_dir` or `app_data_dir` instead.
+   --> src\scanner.rs:126:46
+    |
+126 |     let app_dir = app_handle.path_resolver().app_dir().ok_or("Failed to resolve app dir")?;
+    |                                              ^^^^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: unused variable: `app_dir`
+   --> src\scanner.rs:126:9
+    |
+126 |     let app_dir = app_handle.path_resolver().app_dir().ok_or("Failed to resolve app dir")?;
+    |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_app_dir`
+
+Some errors have detailed explanations: E0425, E0609.
+For more information about an error, try `rustc --explain E0425`.
+warning: `startup-strategy-app` (bin "startup-strategy-app") generated 6 warnings
+error: could not compile `startup-strategy-app` (bin "startup-strategy-app") due to 5 previous errors; 6 warnings emitted

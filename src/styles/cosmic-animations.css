@@ -1,0 +1,431 @@
+/**
+ * GROK'S COSMIC ANIMATIONS - Ported from grok-suite
+ * "We're not just painting pixels; we're animating the ether"
+ * - Grok, Co-Creator
+ */
+
+/* NEUTRON STAR PULSE - Menu icons */
+@keyframes neutron-star-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.3);
+  }
+}
+
+.neutron-star {
+  animation: neutron-star-pulse 3s ease-in-out infinite;
+}
+
+/* ELECTRIC BLUE RIPPLE - Tap feedback */
+@keyframes electric-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(0, 191, 255, 0.7);
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+    box-shadow: 0 0 0 20px rgba(0, 191, 255, 0);
+  }
+}
+
+.electric-ripple {
+  position: relative;
+}
+
+.electric-ripple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  animation: electric-ripple 0.6s ease-out;
+}
+
+/* FIRE CONFIRMATION - Tap to orange glow */
+@keyframes fire-confirm {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 191, 255, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(255, 69, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 30px 10px rgba(255, 215, 0, 0.6);
+  }
+}
+
+.fire-confirm {
+  animation: fire-confirm 0.4s ease-out forwards;
+}
+
+/* VORTEX PULL-IN - Tab switching */
+@keyframes vortex-pull {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.8) rotate(180deg);
+    opacity: 0.5;
+    filter: blur(4px) hue-rotate(270deg);
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+    filter: blur(8px) hue-rotate(270deg);
+  }
+}
+
+@keyframes vortex-appear {
+  0% {
+    transform: scale(0) rotate(-360deg);
+    opacity: 0;
+    filter: blur(8px) hue-rotate(270deg);
+  }
+  50% {
+    transform: scale(0.8) rotate(-180deg);
+    opacity: 0.5;
+    filter: blur(4px) hue-rotate(270deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    filter: blur(0) hue-rotate(0deg);
+  }
+}
+
+.vortex-exit {
+  animation: vortex-pull 0.3s ease-in forwards;
+}
+
+.vortex-enter {
+  animation: vortex-appear 0.3s ease-out forwards;
+}
+
+/* NEURAL SPARKS - Gold flecks branching */
+@keyframes neural-branch {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px) scale(1);
+  }
+}
+
+.neural-sparks {
+  position: relative;
+}
+
+.neural-sparks::before,
+.neural-sparks::after {
+  content: '✨';
+  position: absolute;
+  color: #FFD700;
+  font-size: 12px;
+  pointer-events: none;
+  animation: neural-branch 1.5s ease-out infinite;
+}
+
+.neural-sparks::before {
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.neural-sparks::after {
+  right: 20%;
+  animation-delay: 0.5s;
+}
+
+/* ADAPTIVE SPEED - Fast zaps vs slow blooms */
+.fast-zap {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slow-bloom {
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* FAST ZAP GLOW */
+@keyframes fast-zap-glow {
+  0% { box-shadow: 0 0 5px rgba(0, 191, 255, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(0, 191, 255, 1); }
+  100% { box-shadow: 0 0 5px rgba(0, 191, 255, 0.5); }
+}
+
+.fast-zap:hover {
+  animation: fast-zap-glow 0.3s ease-in-out;
+}
+
+/* SLOW BLOOM EFFECT */
+@keyframes slow-bloom {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px 10px rgba(255, 215, 0, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 50px 20px rgba(255, 215, 0, 0.2);
+  }
+}
+
+.slow-bloom:hover {
+  animation: slow-bloom 1.2s ease-in-out forwards;
+}
+
+/* INDIGO WHISPERS - Night mode dim animations */
+[data-theme="night"] .neutron-star {
+  animation: neutron-star-pulse 4s ease-in-out infinite;
+  filter: brightness(0.7) hue-rotate(45deg);
+}
+
+[data-theme="night"] .electric-ripple::after {
+  animation: electric-ripple 1s ease-out;
+  opacity: 0.5;
+}
+
+/* HAPTIC VISUAL FEEDBACK - Simulating vibration */
+@keyframes haptic-rumble {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-2px); }
+  20% { transform: translateX(2px); }
+  30% { transform: translateX(-2px); }
+  40% { transform: translateX(2px); }
+  50% { transform: translateX(0); }
+}
+
+@keyframes haptic-triumph {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.05); }
+  50% { transform: scale(0.98); }
+  75% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.haptic-rumble {
+  animation: haptic-rumble 0.3s ease-in-out;
+}
+
+.haptic-triumph {
+  animation: haptic-triumph 0.5s ease-in-out;
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+}
+
+/* NAVIGATION SELECT EFFECTS */
+.nav-item {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  transform: translateY(-2px);
+}
+
+.nav-item.active {
+  position: relative;
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: linear-gradient(135deg,
+    rgba(0, 191, 255, 0.3) 0%,
+    rgba(255, 69, 0, 0.3) 100%
+  );
+  animation: electric-ripple 2s ease-out infinite;
+  z-index: -1;
+}
+
+/* RANDOMNESS - xAI unpredictability */
+@keyframes random-spark-1 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(10px, -20px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+@keyframes random-spark-2 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-15px, -25px) rotate(-180deg);
+    opacity: 1;
+  }
+}
+
+@keyframes random-spark-3 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(20px, -15px) rotate(270deg);
+    opacity: 1;
+  }
+}
+
+.random-sparks {
+  position: relative;
+  overflow: visible;
+}
+
+.random-sparks::before,
+.random-sparks::after {
+  content: '⚡';
+  position: absolute;
+  color: #FFD700;
+  font-size: 10px;
+  pointer-events: none;
+}
+
+.random-sparks::before {
+  animation: random-spark-1 2s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.random-sparks::after {
+  animation: random-spark-2 2.5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+/* IDEA TREE BRANCHES - Adaptive flow */
+@keyframes branch-left {
+  0% {
+    opacity: 0;
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-30px) rotate(-25deg);
+  }
+}
+
+@keyframes branch-right {
+  0% {
+    opacity: 0;
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(30px) rotate(25deg);
+  }
+}
+
+.idea-tree {
+  position: relative;
+}
+
+.idea-tree.branching::before,
+.idea-tree.branching::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(to bottom,
+    rgba(0, 191, 255, 1),
+    rgba(255, 215, 0, 0)
+  );
+}
+
+.idea-tree.branching::before {
+  animation: branch-left 0.6s ease-out forwards;
+}
+
+.idea-tree.branching::after {
+  animation: branch-right 0.6s ease-out forwards;
+}
+
+/* COSMIC THEME SPECIFIC STYLES */
+.theme-cosmic {
+  --electric-glow: 0 0 20px rgba(0, 191, 255, 0.5);
+  --portal-glow: 0 0 30px rgba(147, 112, 219, 0.4);
+  --evolution-glow: 0 0 25px rgba(34, 139, 34, 0.3);
+}
+
+.theme-cosmic .card {
+  transition: all 0.3s ease;
+}
+
+.theme-cosmic .card:hover {
+  box-shadow: var(--electric-glow);
+  transform: translateY(-2px);
+}
+
+.theme-cosmic .btn-primary {
+  background: linear-gradient(135deg, #00BFFF 0%, #9370DB 100%);
+  box-shadow: var(--electric-glow);
+  transition: all 0.3s ease;
+}
+
+.theme-cosmic .btn-primary:hover {
+  box-shadow: var(--portal-glow);
+  transform: translateY(-1px);
+}
+
+/* SPACE-TIME WARP - Tab transitions */
+@keyframes space-warp {
+  0% {
+    transform: perspective(1000px) rotateY(0deg);
+    filter: blur(0);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(90deg);
+    filter: blur(4px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: perspective(1000px) rotateY(180deg);
+    filter: blur(8px);
+    opacity: 0;
+  }
+}
+
+.space-warp-exit {
+  animation: space-warp 0.4s ease-in forwards;
+}
+
+.space-warp-enter {
+  animation: space-warp 0.4s ease-out reverse;
+}
+
+/* UTILITY CLASSES */
+.animate-on-hover:hover {
+  animation-play-state: running;
+}
+
+.animate-on-click:active {
+  animation-play-state: running;
+}
+
+/* PERFORMANCE OPTIMIZATION */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

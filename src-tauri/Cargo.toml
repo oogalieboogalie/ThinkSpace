@@ -1,0 +1,50 @@
+[package]
+name = "startup-strategy-app"
+version = "1.0.0"
+description = "Interactive Knowledge Hordehole - Desktop App for Startup Strategy"
+authors = ["you"]
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "1.5", features = [] }
+
+[dependencies]
+tauri = { version = "1.5", features = [ "protocol-all", "shell-open", "fs-all", "dialog-all", "notification-all"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rusqlite = { version = "0.30", features = ["bundled"] }
+reqwest = { version = "0.11", features = ["json", "stream"] }
+tokio = { version = "1", features = ["full"] }
+futures-util = "0.3"
+pdf-extract = "0.7"
+# AI Provider Support
+genai = "0.1"  # Multi-provider AI client (Grok, Minimax, etc)
+# Repository Indexing
+walkdir = "2.4"  # Recursive directory walking
+ignore = "0.4"   # Respect .gitignore files
+# Additional utilities
+anyhow = "1.0"   # Better error handling
+chrono = { version = "0.4", features = ["wasmbind"] }   # Date/time handling
+notify = "6.1"   # File system watching
+notify-debouncer-full = "0.3"  # Debounced file watching
+meval = "0.2"    # Math expression evaluation
+regex = "1.10"   # Regular expression support
+# Temporal Knowledge Graph - Vector Database & Embeddings
+# Using reqwest directly for Qdrant REST API (already included)
+# Using reqwest directly for Cohere API (already included)
+uuid = { version = "1.0", features = ["v4"] }  # UUID generation for knowledge nodes
+lazy_static = "1.4"     # Global static variables for TKG instance
+sha2 = "0.10"           # SHA256 hashing for integrity verification
+url = "2.5"             # URL parsing
+directories = "6.0.0"
+urlencoding = "2.1.3"
+dirs = "6.0.0"
+once_cell = "1.21.3"
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
+
+[dev-dependencies]
+tempfile = "3.8"  # For creating temporary test files/databases
+mockito = "1.2"   # For mocking HTTP requests

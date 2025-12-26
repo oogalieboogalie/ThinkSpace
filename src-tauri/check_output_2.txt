@@ -1,0 +1,83 @@
+    Checking startup-strategy-app v1.0.0 (D:\Git Projects\Information-Hordehole\startup-strategy-app\src-tauri)
+warning: unused import: `walkdir::WalkDir`
+ --> src\scanner.rs:4:5
+  |
+4 | use walkdir::WalkDir;
+  |     ^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `start_time`
+  --> src\commands\orchestrate_agents.rs:35:9
+   |
+35 |     let start_time = std::time::Instant::now();
+   |         ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_start_time`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `current_context`
+   --> src\commands\orchestrate_agents.rs:270:13
+    |
+270 |     let mut current_context = format!("Topic: {}", request.topic);
+    |             ^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_current_context`
+
+warning: variable does not need to be mutable
+   --> src\commands\orchestrate_agents.rs:270:9
+    |
+270 |     let mut current_context = format!("Topic: {}", request.topic);
+    |         ----^^^^^^^^^^^^^^^
+    |         |
+    |         help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+
+error[E0308]: mismatched types
+    --> src\tkg.rs:1253:32
+     |
+1183 |         let mut next_page_offset: Option<serde_json::Value> = None;
+     |                                   ------------------------- expected due to this type
+...
+1253 |             next_page_offset = result["result"]["next_page_offset"].clone();
+     |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Option<Value>`, found `Value`
+     |
+     = note: expected enum `std::option::Option<serde_json::Value>`
+                found enum `serde_json::Value`
+help: try wrapping the expression in `Some`
+     |
+1253 |             next_page_offset = Some(result["result"]["next_page_offset"].clone());
+     |                                +++++                                            +
+
+error[E0599]: no method named `is_null` found for enum `std::option::Option` in the current scope
+    --> src\tkg.rs:1254:33
+     |
+1254 |             if next_page_offset.is_null() {
+     |                                 ^^^^^^^ method not found in `std::option::Option<serde_json::Value>`
+     |
+note: the method `is_null` exists on the type `serde_json::Value`
+    --> C:\Users\Alexa\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_json-1.0.145\src\value\mod.rs:730:5
+     |
+ 730 |     pub fn is_null(&self) -> bool {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: consider using `Option::expect` to unwrap the `serde_json::Value` value, panicking if the value is an `Option::None`
+     |
+1254 |             if next_page_offset.expect("REASON").is_null() {
+     |                                +++++++++++++++++
+
+warning: use of deprecated method `tauri::PathResolver::app_dir`: Will be removed in 2.0.0. Use `app_config_dir` or `app_data_dir` instead.
+   --> src\scanner.rs:126:46
+    |
+126 |     let app_dir = app_handle.path_resolver().app_dir().ok_or("Failed to resolve app dir")?;
+    |                                              ^^^^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: unused variable: `app_dir`
+   --> src\scanner.rs:126:9
+    |
+126 |     let app_dir = app_handle.path_resolver().app_dir().ok_or("Failed to resolve app dir")?;
+    |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_app_dir`
+
+Some errors have detailed explanations: E0308, E0599.
+For more information about an error, try `rustc --explain E0308`.
+warning: `startup-strategy-app` (bin "startup-strategy-app") generated 6 warnings
+error: could not compile `startup-strategy-app` (bin "startup-strategy-app") due to 2 previous errors; 6 warnings emitted
