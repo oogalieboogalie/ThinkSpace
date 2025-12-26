@@ -32,29 +32,25 @@ Seamless AI conversations with **persistent context**:
 
 ## Key Features
 
-### 🤖 Starter AI Agents
+### 🤖 AI Agent Chat
 
-Includes 8 pre-configured agents for learning and content creation:
+Chat with AI using customizable agents. Create your own or use the 8 included starter agents.
 
-- **Curriculum Architect** — Structures learning paths
-- **Socratic Questioner** — Guided discovery through questions
-- **Visual Storyteller** — Analogies and mental models
-- **Practice Designer** — Exercises and quizzes
-- **Research Specialist** — Information gathering
-- **Strategic Planner** — Task breakdown and planning
-- **Content Writer** — Clear, engaging writing
-- **Quality Reviewer** — Feedback and improvements
+### 📚 Study Guide Generator
 
-*Create your own custom agents in the app!*
+AI-powered study guide creation for any topic.
 
-### 📊 Interactive Tools
+### 🎨 Visual Learning Page
 
-- **K-Factor Calculator** — Viral coefficient and growth projections
-- **Pricing Calculator** — Psychology-based pricing optimization
-- **Study Guide Generator** — AI-powered learning materials
-- **Visual Learning Canvas** — Interactive brainstorming and mind mapping
-- **Kanban Board** — Task management built for ADHD minds
-- **Hyperfocus Timer** — Productivity tracking
+Interactive brainstorming and visual learning tools.
+
+### 🧩 Agent Creation
+
+Build and customize your own AI agents with custom prompts.
+
+### 📁 File Embedding
+
+Embed files for context-aware AI conversations.
 
 ### 🎨 Beautiful, Accessible UI
 
