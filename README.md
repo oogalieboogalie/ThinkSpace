@@ -1,8 +1,8 @@
-# ThinkSpace 🚀
+# ThinkSpace 🧠
 
-**AI-Powered Startup Strategy Desktop App**
+**Independent Learning Environment — Built because I was tired of repeating myself to AI every conversation.**
 
-An open-source Tauri desktop application that transforms startup strategy knowledge into interactive, AI-powered tools.
+A context-aware AI learning assistant that remembers your journey, milestones, and breakthroughs — no more starting from zero each chat session.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)
@@ -11,105 +11,155 @@ An open-source Tauri desktop application that transforms startup strategy knowle
 
 ---
 
-## ✨ Features
+## The Problem 😤
 
-### Interactive Modules
+Tired of having to:
+- Re-explain your goals and context to AI every conversation
+- Lose track of insights and breakthroughs between sessions
+- Start learning journeys over and over again
+- Work with AI that doesn't understand your working style or preferences
 
-- **🚀 Growth Hacker Assistant** — Personalized growth tactics, Product Hunt launch plans, Reddit strategy
-- **💰 Pricing Optimizer** — Visual pricing calculator, A/B test simulator, psychology-based recommendations
-- **🎤 VC Pitch Analyzer** — Upload pitch deck, get red/green flag analysis, improve answers
-- **🧠 Behavioral Design Auditor** — User flow analysis, habit loop optimizer
-- **📈 K-Factor Calculator** — Viral coefficient calculator, growth projections
-- **🤖 Algorithm Dashboard** — Monitor SEO, social algorithms, content optimization
-- **👥 Community Scout** — Find niche communities, engagement strategies
-- **📰 PR Strategist** — Press release templates, journalist finder
-- **🔍 Competitive Intelligence** — Track competitors, analyze job postings
-- **🌍 Regional Insights** — Market research, localization checklists
+## The Solution ✨
 
-### Tech Highlights
+Seamless AI conversations with **persistent context**:
 
-- 🖥️ Native desktop app (Windows, macOS, Linux)
-- 💾 Local-first data storage (SQLite)
-- 🔒 Privacy-focused — your data stays on your machine
-- ⚡ Fast native performance via Tauri/Rust
-- 🎨 Modern UI with dark mode
+- 🧠 **Memory that matters** — Milestones, insights, and breakthroughs are automatically preserved
+- 🔄 **Session continuity** — Pick up exactly where you left off, even after chat resets
+- 🎯 **Personalized experience** — AI learns your preferences, working style, and goals
+- 📚 **Learning journey tracking** — See your progress and remember your "aha!" moments
 
 ---
 
-## 🛠️ Tech Stack
+## Key Features
+
+### 🤖 Starter AI Agents
+
+Includes 8 pre-configured agents for learning and content creation:
+
+- **Curriculum Architect** — Structures learning paths
+- **Socratic Questioner** — Guided discovery through questions
+- **Visual Storyteller** — Analogies and mental models
+- **Practice Designer** — Exercises and quizzes
+- **Research Specialist** — Information gathering
+- **Strategic Planner** — Task breakdown and planning
+- **Content Writer** — Clear, engaging writing
+- **Quality Reviewer** — Feedback and improvements
+
+*Create your own custom agents in the app!*
+
+### 📊 Interactive Tools
+
+- **K-Factor Calculator** — Viral coefficient and growth projections
+- **Pricing Calculator** — Psychology-based pricing optimization
+- **Study Guide Generator** — AI-powered learning materials
+- **Visual Learning Canvas** — Interactive brainstorming and mind mapping
+- **Kanban Board** — Task management built for ADHD minds
+- **Hyperfocus Timer** — Productivity tracking
+
+### 🎨 Beautiful, Accessible UI
+
+- Dark mode by default
+- ADHD-friendly design (reduced cognitive load)
+- Smooth animations with Framer Motion
+- Invisible sidebar for distraction-free work
+
+---
+
+## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
-| Frontend | React 18, TypeScript, TailwindCSS |
+| Frontend | React 18, TypeScript, TailwindCSS, Framer Motion |
 | Backend | Tauri (Rust), SQLite |
-| AI | Claude API (bring your own key) |
+| AI | MiniMax, OpenAI, Claude (bring your own key) |
 | Cloud (optional) | Supabase |
+| Vector Storage | Qdrant (for semantic memory) |
 
 ---
 
-## 📦 Quick Start
+## Quick Start 🚀
 
 ### Prerequisites
-
 - Node.js 18+
 - Rust ([install](https://rustup.rs))
 - Tauri CLI: `cargo install tauri-cli`
 
-### Development
+### Installation
 
 ```bash
-# Install dependencies
+git clone https://github.com/oogalieboogalie/ThinkSpace.git
+cd ThinkSpace
 npm install
+```
 
-# Create your .env from example
+### Configuration
+
+```bash
 cp .env.example .env
 # Add your API keys to .env
+```
 
-# Run development server
+### Run
+
+```bash
 npm run tauri dev
 ```
 
 ### Build
 
 ```bash
-# Build for your current platform
 npm run tauri build
-
-# Outputs:
-# Windows: .exe installer
-# macOS: .dmg + .app
-# Linux: .deb + .AppImage
+# Outputs: .exe (Windows), .dmg (macOS), .deb/.AppImage (Linux)
 ```
 
 ---
 
-## ⚙️ Configuration
+## Why I Built This 💡
 
-Copy `.env.example` to `.env` and configure:
+After years of using AI assistants, I realized the biggest pain point wasn't the AI's capabilities — it was the **lack of continuity**. Every conversation felt like starting from scratch, even when I was working on the same complex project for weeks.
 
-```env
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+This learning environment was my attempt to solve that fundamental UX problem. Now our conversations can build on each other, and the AI actually gets my context without me having to re-explain everything.
+
+---
+
+## Architecture
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Tauri App     │────│   Rust Backend  │────│  Vector Store   │
+│  (React/TS)     │    │  (SQLite/APIs)  │    │  (Qdrant)       │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                              │
+                       ┌─────────────────┐
+                       │   AI Services   │
+                       │ (MiniMax/OpenAI)│
+                       └─────────────────┘
 ```
 
 ---
 
-## 🤝 Contributing
+## Contributing 🤝
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+This is an open source project born from real developer frustration. Contributions are welcome!
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ---
 
-## 📄 License
+## License 📄
 
 MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-## 🙏 Acknowledgments
+## Roadmap 🗺️
 
-Built with [Tauri](https://tauri.app), [React](https://react.dev), and [Anthropic Claude](https://anthropic.com).
+- [ ] Web interface for memory browsing
+- [ ] Export/import learning journeys
+- [ ] Team collaboration features
+- [ ] Custom importance scoring models
+- [ ] Plugin ecosystem for different AI providers
 
 ---
 
-**Made with ❤️ for founders, by founders**
+**Built with ❤️ by a developer who refused to accept "reset conversation" as the only option.**
